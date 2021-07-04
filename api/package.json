@@ -1,0 +1,23 @@
+{
+  "name": "uploadimage",
+  "version": "1.0.0",
+  "description": "Test upload images",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "chart.js": "^2.8.0",
+    "ejs": "^2.6.1",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0",
+    "express-session": "^1.16.1",
+    "moment": "^2.24.0",
+    "nodemon": "^1.19.1",
+    "fs": "0.0.1-security"
+  },
+  "devDependencies": {}
+}

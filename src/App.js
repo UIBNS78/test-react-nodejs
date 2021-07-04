@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { BrowserRouter, Route, Redirect } from 'react-router-dom'
+import CarList from './components/cars';
+import Navigation from './components/app-bar';
+import './App.css'
+import { connect } from 'react-redux'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+	
+	componentDidMount = () => {
+		const user = JSON.parse(localStorage.getItem('user'))
+		if (user) {
+			this.props.dispatch({ type: 'RESTORE_USER', payload: { user } })
+		}
+	}
+	
+	
+	render() {
+		return (
+			<BrowserRouter>
+				<Navigation />
+				<div className="container">
+					<Route exact path="/" component={CarList} />
+					<Route path="*">
+						<Redirect to="/" />
+					</Route>
+				</div>
+			</BrowserRouter>
+		);
+	}
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+	return {
+		dispatch: payload => dispatch(payload)
+	}
+}
+
+export default connect(null, mapDispatchToProps)(App);
