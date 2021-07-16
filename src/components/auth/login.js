@@ -26,7 +26,7 @@ class Login extends Component {
     
     render() {
         const { loading, alert } = this.state
-        const { open, login, history } = this.props
+        const { open, login } = this.props
         return (
             <div>
                 <Dialog open={open} aria-labelledby="title-dialog">
@@ -42,7 +42,7 @@ class Login extends Component {
                             validationSchema={LoginSchema}
                             onSubmit={(values, action) => {
                                 this.setState({loading: false})
-                                login(values, this.handleSetAlert, this.handleCloseModal, action, history)
+                                login(values, this.handleSetAlert, this.handleCloseModal, action)
                             }}
                         >
                             {formikProps => (
@@ -90,16 +90,10 @@ class Login extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        history: state.userReducer.history
-    }
-}
-
 const mapDispatchToProps = dispatch => {
     return {
-        login: (values, handleSetAlert, handleClose, action, history) => dispatch(loginAction(values, handleSetAlert, handleClose, action, history))
+        login: (values, handleSetAlert, handleClose, action) => dispatch(loginAction(values, handleSetAlert, handleClose, action))
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(null, mapDispatchToProps)(Login)

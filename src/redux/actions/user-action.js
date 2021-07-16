@@ -1,7 +1,7 @@
 import { urls, messages } from '../../global'
 import axios from 'axios'
 
-export const loginAction = (user, handleSetAlert, handleClose, action, navigation) => {
+export const loginAction = (user, handleSetAlert, handleClose, action) => {
     return (dispatch, getState) => {
         axios.post(urls.post.login, user).then(response => {
             const { status, data } = response
@@ -13,9 +13,6 @@ export const loginAction = (user, handleSetAlert, handleClose, action, navigatio
                     action.resetForm()
                     handleClose()
                     handleSetAlert(null, true)
-                    if (data.user.role === 'admin') {
-                        navigation.push('/list-user')
-                    }
                 } else {
                     handleSetAlert({ type: 'warning', message: data.message }, true)
                 }

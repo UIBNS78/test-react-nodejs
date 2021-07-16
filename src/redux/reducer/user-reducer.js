@@ -30,13 +30,7 @@ const userReducer = (state = initState, { type, payload }) => {
                 ...state,
                 snackbar: null
             }
-
-        case 'RESTORE_HISTORY':
-            return {
-                ...state,
-                history: payload.history
-            }
-    
+            
         default:
             return {
                 ...state

@@ -108,6 +108,11 @@ export default function Navigation() {
                                 isAdmin() ? (
                                     <>
                                         <div style={{ display: 'inline-block' }}>
+                                            <NavLink to="/list" className={classes.navItem}>
+                                                <Typography className={classes.navItemText}>
+                                                    ACCUEIL
+                                                </Typography>
+                                            </NavLink>
                                             <NavLink to="/list-user" className={classes.navItem}>
                                                 <Typography className={classes.navItemText}>
                                                     UTILISATEURS
