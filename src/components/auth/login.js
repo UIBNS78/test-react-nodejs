@@ -10,9 +10,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { Formik } from 'formik'
 import { LoginSchema } from '../../schemas/input-schema';
 import { connect } from 'react-redux'
-import { loginAction } from '../../redux/actions/auth-action'
-
-export class Login extends Component {
+import { loginAction } from '../../redux/actions/user-action'
+class Login extends Component {
 
     state = {
         loading: true,
@@ -27,7 +26,7 @@ export class Login extends Component {
     
     render() {
         const { loading, alert } = this.state
-        const { open, login } = this.props
+        const { open, login, history } = this.props
         return (
             <div>
                 <Dialog open={open} aria-labelledby="title-dialog">
@@ -43,7 +42,7 @@ export class Login extends Component {
                             validationSchema={LoginSchema}
                             onSubmit={(values, action) => {
                                 this.setState({loading: false})
-                                login(values, this.handleSetAlert, this.handleCloseModal, action)
+                                login(values, this.handleSetAlert, this.handleCloseModal, action, history)
                             }}
                         >
                             {formikProps => (
@@ -91,10 +90,16 @@ export class Login extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
     return {
-        login: (values, handleSetAlert, handleClose, action) => dispatch(loginAction(values, handleSetAlert, handleClose, action))
+        history: state.userReducer.history
     }
 }
 
-export default connect(null, mapDispatchToProps)(Login)
+const mapDispatchToProps = dispatch => {
+    return {
+        login: (values, handleSetAlert, handleClose, action, history) => dispatch(loginAction(values, handleSetAlert, handleClose, action, history))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

@@ -8,8 +8,8 @@ function CarSkeleton() {
     return (
         <>
             {
-                [1, 2, 3, 4, 5, 6].map(() => (
-                    <Card style={{marginBottom: 20}}>
+                [1, 2, 3, 4, 5, 6].map(n => (
+                    <Card key={n} style={{marginBottom: 20}}>
                         <CardContent>
                             <Skeleton height={60} />
                             <Skeleton />

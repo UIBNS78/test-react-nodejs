@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux'
 
 function CarItem({car}) {
 
-    const user = useSelector(state => state.authReducer.user)
+    const user = useSelector(state => state.userReducer.user)
     
     return (
         <Card style={{marginBottom: 20, paddingBottom: 20}}>
@@ -48,7 +48,7 @@ function CarItem({car}) {
             <Divider />
             
             {/* Comments */}
-            { car.comments.length > 0 && car.comments.map(comment => <CommentItem comment={comment} />) }
+            { car.comments.length > 0 && car.comments.map(comment => <CommentItem key={comment.id_comment} comment={comment} />) }
             
             {/* Input */}
             { user && <InputComment idCar={car._id} /> }

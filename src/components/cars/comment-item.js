@@ -62,7 +62,7 @@ class CommentItem extends Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.authReducer.user
+        user: state.userReducer.user
     }
 }
 

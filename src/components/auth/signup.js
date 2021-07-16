@@ -7,12 +7,16 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
 import { Formik } from 'formik'
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 import { SignupSchema } from '../../schemas/input-schema'
 import { connect } from 'react-redux'
-import { signupAction } from '../../redux/actions/auth-action'
+import { signupAction } from '../../redux/actions/user-action'
 
-export class Signup extends Component {
+class Signup extends Component {
 
     state = {
         loading: true,
@@ -39,7 +43,7 @@ export class Signup extends Component {
                         </DialogContentText>
                         { alert && <Alert severity={alert.type} style={{marginBottom: 10}}>{ alert.message }</Alert> }
                         <Formik
-                            initialValues={{username: '', email: '', password: '', confirm: ''}}
+                            initialValues={{username: '', email: '', role: '', password: '', confirm: ''}}
                             validationSchema={SignupSchema}
                             onSubmit={(values, action) => {
                                 this.setState({loading: false})
@@ -68,6 +72,25 @@ export class Signup extends Component {
                                         fullWidth
                                         style={{marginTop: 10}}
                                     />
+                                    <FormControl 
+                                        onBlur={formikProps.handleBlur('role')}
+                                        error={formikProps.touched.role && formikProps.errors.role ? true : false}
+                                        fullWidth 
+                                        style={{marginTop: 10}}
+                                    >
+                                        <InputLabel id="demo-simple-select-outlined-label">
+                                            Rôle
+                                        </InputLabel>
+                                        <Select
+                                            labelId="demo-simple-select-outlined-label"
+                                            id="demo-simple-select-outlined"
+                                            value={formikProps.values.role}
+                                            onChange={formikProps.handleChange('role')}
+                                        >
+                                            <MenuItem value="admin">Administrateur</MenuItem>
+                                            <MenuItem value="user">Utilisateur</MenuItem>
+                                        </Select>
+                                    </FormControl>
                                     <TextField
                                         label="Mots de passe"
                                         type="password"

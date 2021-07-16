@@ -7,7 +7,7 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import DialogActions from '@material-ui/core/DialogActions'
 import Button from '@material-ui/core/Button'
 import { connect } from 'react-redux'
-import { removeCommentAction } from '../../redux/actions/car-action'
+import { removeCarAction } from '../../../redux/actions/car-action'
 
 class ModalConfirm extends Component {
 
@@ -16,12 +16,8 @@ class ModalConfirm extends Component {
     }
     
     handleRemove = () => {
-        const { handleClose, comment, removeComment } = this.props
-        const commentRemoved = {
-            id_car: comment.id_car,
-            id_comment: comment.id_comment
-        }
-        removeComment(commentRemoved, handleClose, this.handleSetAlert)
+        const { handleClose, id, removeCar } = this.props
+        removeCar(id, handleClose, this.handleSetAlert)
     }
     
     handleSetAlert = (alert) => this.setState({alert})
@@ -55,7 +51,7 @@ class ModalConfirm extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        removeComment: (comment, handleClose, handleSetAlert) => dispatch(removeCommentAction(comment, handleClose, handleSetAlert)) 
+        removeCar: (comment, handleClose, handleSetAlert) => dispatch(removeCarAction(comment, handleClose, handleSetAlert)) 
     }
 }
 

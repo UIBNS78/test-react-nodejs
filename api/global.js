@@ -5,7 +5,12 @@ exports.messages = {
     passNotTheSame: 'Les mots de passe ne correspondent pas',
     usernameInUse: 'Ce pseudo est déjà pris',
     congrats: 'Félicitation, vous êtes maintenant un(e) des membres',
-    passWrong: 'Mots de passe incorrecte.',
+    updateUserSeccessful: 'Votre profile à été mis à jour',
+    passWrong: 'Mots de passe est incorrecte.',
+    wrongOldPass: 'Ancien mots de passe incorrecte',
     unknownUsername: 'Ce pseudo n\'existe pas.',
-    welcome: username => `Bienvenue ${username}`
+    welcome: username => `Bienvenue ${username}`,
+    wrongToken: 'Désolé, vous avez une autorisation invalide.',
+    unAuthorized: 'Vous devez être authentifié',
+    adminExists: 'Il existe dèjà un administrateur, il ne peut y avoir qu\'un seul administrateur'
 }

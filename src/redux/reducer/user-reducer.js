@@ -1,9 +1,10 @@
 const initState = {
     user: null,
-    snackbar: null
+    snackbar: null,
+    history: null
 }
 
-const authReducer = (state = initState, { type, payload }) => {
+const userReducer = (state = initState, { type, payload }) => {
     switch (type) {
         case 'RESTORE_USER':
             return {
@@ -29,6 +30,12 @@ const authReducer = (state = initState, { type, payload }) => {
                 ...state,
                 snackbar: null
             }
+
+        case 'RESTORE_HISTORY':
+            return {
+                ...state,
+                history: payload.history
+            }
     
         default:
             return {
@@ -37,4 +44,4 @@ const authReducer = (state = initState, { type, payload }) => {
     }
 }
 
-export default authReducer
+export default userReducer

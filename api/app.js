@@ -19,10 +19,10 @@ app.use(session({
 }));
 
 let index = require('./routes/index.route');
-let auth = require('./routes/auth.route');
+let user = require('./routes/user.route');
 
 //ROUTING
 app.use('/', index);
-app.use('/auth', auth);
+app.use('/user', user);
 
 app.listen(3001)

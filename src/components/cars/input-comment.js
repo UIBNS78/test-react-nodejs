@@ -7,7 +7,7 @@ import { CommentSchema } from '../../schemas/input-schema'
 import { connect } from 'react-redux'
 import { addCommentAction } from '../../redux/actions/car-action'
 
-export class InputComment extends Component {
+class InputComment extends Component {
 
     state = {
         alert: null
@@ -65,7 +65,7 @@ export class InputComment extends Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.authReducer.user
+        user: state.userReducer.user
     }
 }
 

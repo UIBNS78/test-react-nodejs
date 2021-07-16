@@ -5,7 +5,7 @@ import axios from 'axios'
 import CarSkeleton from '../skeleton/car-skeleton'
 import { connect } from 'react-redux'
 
-export class CarList extends Component {
+class CarList extends Component {
     
     componentDidMount = () => {
         axios.get(urls.get.listCar).then(response => {
@@ -24,7 +24,7 @@ export class CarList extends Component {
             <>
                 {
                     cars && cars.length > 0 ? cars.map(car => (
-                        <CarItem car={car} />
+                        <CarItem key={car._id} car={car} />
                     )) : <CarSkeleton />
                 }  
             </>
